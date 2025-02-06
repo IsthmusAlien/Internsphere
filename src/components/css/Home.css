@@ -1,5 +1,42 @@
 .Home {
-    background-color: #6b61c9;
+    background-color: #8982cc;
     width: 100vw; 
     height: 100vh;
+    margin: 0;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    position: relative;
+    opacity: 0.65;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgimg-1 {
+    background-image: url("../../../public/bg_hm.jpg");
+    min-height: 100%;
+}
+
+.caption {
+    position: absolute;
+    right: 0;
+    top: 35%;
+    width: 50%;
+    text-align: center;
+}
+
+h2 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 65px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin-top: 5px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font: 15px "Lato", sans-serif;
 }
