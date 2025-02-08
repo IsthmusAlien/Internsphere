@@ -1,39 +1,54 @@
 import React from "react";
 import "./css/Home.css";
 
+import {useNavigate} from 'react-router-dom'
+
 function Home() {
+  const navigate = useNavigate() 
+
   return (
-    
-    <div className="Home">
+    <>
 
-      <div className="bgimg-1">
-        <div className="caption">
-          <h2>Internsphere</h2>
-          <p>By Students For Students</p>
+    <header className="header-home">
+
+      <div className="btn-group-home">
+
+        <button className="btn-home btn-employer-home" onClick={() => navigate("/login", { state: { user_type: "emp" } })}>
+          Employer
+        </button>
+
+        <button className="btn-home btn-student-home" onClick={() => navigate("/login", { state: { user_type: "std" } })}>
+          Student
+        </button>
+
+      </div>
+    </header>
+
+    <div className="main-home">
+
+      <div className="bgimg-home">
+
+        <div className="caption-home">
+
+          <img src="/title_logo.svg" alt="Internsphere Logo" className="title-home" />
+
+          <p className="subtitle-home">for Students, by Students</p>
+
         </div>
       </div>
 
-      <div 
-        style={{ 
-          position: "relative"
-         }}
-        >
+      <footer className="footer-home">
 
-        <div
-          style={{
-            color: "#ddd",
-            backgroundColor: "#282E34",
-            textAlign: "justify",
-            padding: "50px 80px"
-          }}
-        >
+        <div className="quote-container-home">
 
-          <p>Educational Quote Here.</p>
+        <p className="edu-quote-home">
+          <em>"The beautiful thing about learning is that no one can take it away from you."</em>{" "} — B.B. King
+        </p>
 
         </div>
-      </div>
-
+      </footer>
     </div>
+  </>
   );
 }
 
