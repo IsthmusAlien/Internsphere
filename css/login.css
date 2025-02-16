@@ -54,25 +54,53 @@ html, body {
 }
 
 .headline-login {
-    font-size: clamp(15px, 2.7vw, 28px);;
-    font-family: "Baloo 2", serif;
+    font-size: clamp(18px, 2.5vw, 28px);
     font-weight: bold;
-    color: rgb(22 20 31);
+    color: rgb(22, 20, 31);
+    margin-bottom: 15px;
+    margin-top: 0;
+    font-family: "Baloo 2", serif;
 }
 
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    text-align: left;
+    font-size: clamp(8px, 1.2vw, 15px);
+    font-weight: bold;
+    color: rgb(22, 20, 31);
+    font-family: "Baloo 2", serif;
+}
+
+input {
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
 button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
-    border: none;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s ease-in-out;
 }
 
 button:hover {
