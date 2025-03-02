@@ -87,10 +87,10 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.btn-employer-home {
+/* .btn-employer-home {
     background-color: rgb(22 20 31);
     color: white;
-}
+} */
 
 .btn-student-home {
     background-color: white;
