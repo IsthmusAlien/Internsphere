@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png">
+    <title>Home</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-home">
+        <div class="btn-group-home">
+            <button class="btn-home btn-student-home">About</button>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <div class="main-home">
+        <div class="bgimg-home">
+            <div class="caption-home">
+                <img src="assets/title_logo.svg" alt="Internsphere Logo">
+                <p class="subtitle-home">for Students, by Students</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-chat" display="none">
+
+    </div>
+    
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const themeToggle = document.getElementById("theme-toggle");
+            const bgImage = document.querySelector(".bgimg-home");
+            const header = document.querySelector(".header-home");
+
+            themeToggle.addEventListener("change", function () {
+                if (this.checked) {
+                    header.style.backgroundColor = 'rgb(22 20 31)';
+                    bgImage.style.backgroundImage = "url('assets/bg_home_dk.jpg')";
+                    bgImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(177, 177, 177, 0.15), rgba(132, 132, 132, 0.01))");
+                } else {
+                    header.style.backgroundColor = 'rgb(215, 215, 215)';
+                    bgImage.style.backgroundImage = "url('assets/bg_home_lg.jpg')";
+                    bgImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(35, 33, 33, 0.8), rgba(19, 18, 18, 0.2))");
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
