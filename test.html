@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .item {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .item h3 {
+            font-size: 18px;
+            margin: 0 0 5px;
+            color: #007bff;
+        }
+
+        .item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .response-container {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: left;
+            background: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            font-family: monospace;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .inline-code {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>API Data Display</h1>
+        <div id="data-list" class="grid-container"></div>
+        <div id="response-container" class="response-container" style="display:none;">
+            <div id="response-content"></div>
+        </div>
+    </div>
+
+    <script>
+        let data = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const apiUrl = "https://script.googleusercontent.com/macros/echo?user_content_key=Q5HPwhXqxJ7j_pC3PwL-ZXxiJiF4Z12_IRdFoO5Mwg-jjNrQi3nQS4jJbYkZAVDqDL_t3vblPJf-9uDUk36JjqTvGNnj3TNTm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKUrtt_rAxmQxr0TXZzPcJ2rPGEKIIv3zLEOh87GrqUIp0pj0V_sHrJ0ygzsQSlFMq9vKE9NblAidtvDnZpCzLKr0eC7DkmtLA&lib=MbZNem6wALQWQ40psklsGsc6dDctXikpF"; 
+            const dataList = document.getElementById("data-list");
+
+            async function fetchData() {
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    data = await response.json();
+                    displayData(data);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    dataList.innerHTML = `<p style="color: red;">Failed to load data.</p>`;
+                }
+            }
+
+            function displayData(items) {
+                dataList.innerHTML = "";
+                items.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.innerHTML = `
+                        <h3>${item.title}</h3>
+                        <p><strong>Category:</strong> ${item.category}</p>
+                        <p><strong>Reference:</strong> ${item.reference}</p>
+                    `;
+
+                    div.addEventListener("click", () => {
+                        handleQuery(item.reference, item.title, item.category);
+                    });
+
+                    dataList.appendChild(div);
+                });
+            }
+
+            fetchData();
+        });
+
+        function handleQuery(reference, title, category) {
+            const prompt = `Give a Step-by-Step Guide for ${title} Project with respect to ${category} along 
+            with code, use this ${reference} GitHub repository as a Reference.`;
+
+            callGeminiAPI(prompt);
+        }
+
+        function callGeminiAPI(prompt) {
+            const key = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+            };
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data?.candidates?.length > 0) {
+                    const answer = data.candidates[0]?.content?.parts[0]?.text || 'Error occurred';
+                    console.log(answer);
+                    displayResponse(answer);
+                } else {
+                    displayResponse("Error fetching response.");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                displayResponse("Error fetching response.");
+            });
+        }
+
+        function displayResponse(text) {
+            const responseContainer = document.getElementById("response-container");
+            const responseContent = document.getElementById("response-content");
+
+            const formattedText = marked.parse(text);
+            responseContent.innerHTML = formattedText;
+
+            responseContent.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+                const copyBtn = document.createElement('button');
+                copyBtn.textContent = 'Copy';
+                copyBtn.className = 'copy-btn';
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(block.innerText);
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+                });
+                block.parentNode.style.position = 'relative';
+                block.parentNode.appendChild(copyBtn);
+            });
+
+            responseContainer.style.display = "block";
+        }
+
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(codeBlock).then(() => {
+                button.innerText = "Copied!";
+                setTimeout(() => {
+                    button.innerText = "Copy";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
