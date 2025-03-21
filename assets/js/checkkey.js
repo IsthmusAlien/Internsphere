@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultMessage = document.getElementById("popup-result");
 
     async function checkApiKey(apiKey) {
-        const url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=" + apiKey;
+        const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
         
         const data = {
             contents: [{ parts: [{ text: "Hello" }] }]
@@ -24,7 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 localStorage.setItem("geminiApiKey", apiKey);
 
-                setTimeout(() => { popup.style.display = "none"; }, 2000);
+                setTimeout(() => {
+                    popup.style.display = "none"; 
+                    showPage(chatPage);
+                }, 1000);
+
             } else {
                 const errorData = await response.json();
                 resultMessage.style.textAlign = "left";

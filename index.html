@@ -5,23 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logo.png">
     <title>Home</title>
+    <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/settings.css">
     <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+    <script src="assets/data.js"></script>
+    <script src="assets/js/loaddata.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/pages.js"></script>
     <script src="assets/js/popup.js"></script>
+    <script src="assets/js/settings.js"></script>
     <script src="assets/js/checkkey.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="header-home">
-        <div class="btn-group-home">
-            <button class="btn-home btn-about-home">About</button>
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle" unchecked>
-                <span class="slider"></span>
-            </label>
+    <header class="header">
+        <div class="btn-group">
+            <button class="btn-about-home">About</button>
+            <div class="btn-group-inner">
+                <button class="btn-settings">
+                    <img src="assets/settings-lg.png" alt="Settings" id="settings-icon">
+                </button>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle" unchecked>
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
     </header>
 
@@ -29,19 +40,12 @@
         <div class="popup-content">
             <h2>Welcome!</h2>
             <p>Please enter your Gemini API Key:</p>
-
             <p id="popup-result"></p> 
-
             <input type="text" id="user-key" placeholder="Gemini API Key" required>
-
-            <p><strong>Don't have an API Key?</strong> Get one from 
-                <a href="https://aistudio.google.com/app/apikey" target="_blank">here</a>.
-            </p>
-
+            <p><strong>Don't have an API Key?</strong> Get one from <a href="https://aistudio.google.com/app/apikey" target="_blank">here</a></p>
             <p class="warning">
             <strong>Note:</strong> Keep your API key safe. Do not share it with anyone.
             </p>
-            
             <div class="popup-buttons">
                 <button class="popup-btn" id="submit-popup">Submit</button>
                 <button class="popup-btn" id="close-popup">Cancel</button>
@@ -60,7 +64,7 @@
     </div>
 
 
-    <div class="main-about">
+    <div class="main-about" style="display: none;">
         <div class="bgimg">
             <div class="caption-about">
                 <div class="title-about">
@@ -77,11 +81,26 @@
         </div>
     </div>
 
-    <div class="main-chat" style="display: none;">
-        <div id="data-list" class="grid-container"></div>
+    <div class="main-settings" style="display: none;">
+        <div class="bgimg">
+            <div class="caption-settings">
+                <label for="theme-select">Preferred Mode:</label>
+                <select id="theme-select">
+                    <option value="lg">Light Mode</option>
+                    <option value="dk">Dark Mode</option>
+                </select>
+                <label for="api-key">Gemini API Key:</label>
+                <input type="text" id="api-key" readonly>
+                <button id="delete-api-key">Delete API Key</button>
+            </div>
+        </div>
     </div>
 
-
+    <div class="main-chat" style="display: none;">
+        <div class="bgimg">
+            <div id="data-list" class="grid-container-chat"></div>
+        </div>
+    </div>
 
 </body>
 </html>
