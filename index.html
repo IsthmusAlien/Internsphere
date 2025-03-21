@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logo.png">
     <title>Home</title>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/pages.js"></script>
+    <script src="assets/js/popup.js"></script>
+    <script src="assets/js/checkkey.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="header-home">
         <div class="btn-group-home">
-            <button class="btn-home btn-student-home">About</button>
+            <button class="btn-home btn-about-home">About</button>
             <label class="switch">
                 <input type="checkbox" id="theme-toggle" unchecked>
                 <span class="slider"></span>
@@ -21,8 +25,32 @@
         </div>
     </header>
 
+    <div class="popup-overlay" id="api-popup" style="display: none;">
+        <div class="popup-content">
+            <h2>Welcome!</h2>
+            <p>Please enter your Gemini API Key:</p>
+
+            <p id="popup-result"></p> 
+
+            <input type="text" id="user-key" placeholder="Gemini API Key" required>
+
+            <p><strong>Don't have an API Key?</strong> Get one from 
+                <a href="https://aistudio.google.com/app/apikey" target="_blank">here</a>.
+            </p>
+
+            <p class="warning">
+            <strong>Note:</strong> Keep your API key safe. Do not share it with anyone.
+            </p>
+            
+            <div class="popup-buttons">
+                <button class="popup-btn" id="submit-popup">Submit</button>
+                <button class="popup-btn" id="close-popup">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="main-home">
-        <div class="bgimg-home">
+        <div class="bgimg">
             <button class="floating-btn-home">Get Started</button>
             <div class="caption-home">
                 <img src="assets/title_logo.svg" alt="Internsphere Logo">
@@ -31,9 +59,29 @@
         </div>
     </div>
 
-    <div class="main-chat" display="none">
 
+    <div class="main-about">
+        <div class="bgimg">
+            <div class="caption-about">
+                <div class="title-about">
+                    <h1>About</h1>
+                    <img src="assets/title_logo.svg" alt="Internsphere Logo">
+                </div>
+                <p>
+                    <strong>Internsphere</strong> is a platform designed <strong>for students, by students</strong>. 
+                    Our mission is to bridge the gap between learning and practical application by providing real-world projects. Whether you're seeking hands-on experience, mentorship, or resources to enhance your skills, we are committed to supporting your professional growth.
+                </p>
+                <h2>Created By</h2>
+                <p>TY COMPS B3 Batch</p>
+            </div>
+        </div>
     </div>
+
+    <div class="main-chat" style="display: none;">
+        <div id="data-list" class="grid-container"></div>
+    </div>
+
+
 
 </body>
 </html>
