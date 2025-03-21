@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
 
     const bgImages = document.querySelectorAll(".bgimg");
+    const bgChatImage = document.querySelector(".bgimg-chat");
     const header = document.querySelector(".header");
     const floatingBtn = document.querySelector(".floating-btn-home");
 
@@ -28,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 bgImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(177, 177, 177, 0.15), rgba(132, 132, 132, 0.01))");
             });
 
+            bgChatImage.style.backgroundImage = "url('assets/bg_chat_dk.jpg')";
+            bgChatImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(177, 177, 177, 0.15), rgba(132, 132, 132, 0.01))");
+
             popupOverlay.style.background = "#12121a"; 
             popupInput.style.color = "white";
             closePopupBtn.style.backgroundColor = "rgb(18, 18, 26)";
@@ -50,6 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 bgImage.style.backgroundImage = "url('assets/bg_home_lg.jpg')";
                 bgImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(35, 33, 33, 0.8), rgba(19, 18, 18, 0.2))");
             });
+
+            bgChatImage.style.backgroundImage = "url('assets/bg_chat_lg.jpg')";
+            bgChatImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(35, 33, 33, 0.8), rgba(19, 18, 18, 0.2))");
 
             popupOverlay.style.background = "rgb(239, 239, 239)";
             popupInput.style.color = "black";

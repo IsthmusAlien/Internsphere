@@ -31,8 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const storedApiKey = localStorage.getItem("geminiApiKey");
-    apiKeyInput.value = storedApiKey ? storedApiKey : "No API Key Found";
 
+    if (storedApiKey) {
+        const halfLength = Math.ceil(storedApiKey.length / 2);
+        apiKeyInput.value = storedApiKey.substring(0, halfLength) + ".......";
+    } else {
+        apiKeyInput.value = "No API Key Found";
+    }
+    
     deleteApiKeyBtn.addEventListener("click", function () {
         localStorage.removeItem("geminiApiKey");
         apiKeyInput.value = "Gemini API Key not found";

@@ -124,7 +124,7 @@
 
 .floating-btn-home {
     position: fixed;
-    top: clamp(100px, 40vw, 250px);
+    top: clamp(100px, 40vw, 200px);
     left: 50%;
     transform: translateX(-50%);
     background: rgba(195, 195, 195, 0.15);

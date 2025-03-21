@@ -2,8 +2,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const popup = document.getElementById("api-popup");
     const resultMessage = document.getElementById("popup-result");
+    const currentDate = new Date();
 
-    async function checkApiKey(apiKey) {
+    if (localStorage.getItem("geminiApiKey")) {
+        const storedApiData = JSON.parse(localStorage.getItem("geminiApiKey"));
+
+        const existingApiKey = storedApiData.key;
+        const storedDate = new Date(storedApiData.date); 
+
+        const monthDifference = (currentDate.getFullYear() - storedDate.getFullYear()) * 12 +
+                                (currentDate.getMonth() - storedDate.getMonth());
+
+        if (monthDifference < 1) {
+            popup.style.display = "none"; 
+            showPage(document.querySelector(".main-chat"), "Chat");
+        } else {
+            checkApiKey(existingApiKey, true);
+        }
+    }
+
+    async function checkApiKey(apiKey, existingApi) {
         const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
         
         const data = {
@@ -22,12 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 resultMessage.textContent = "API Key is valid";
                 resultMessage.style.color = "green";
 
-                localStorage.setItem("geminiApiKey", apiKey);
-
-                setTimeout(() => {
-                    popup.style.display = "none"; 
-                    showPage(chatPage);
-                }, 1000);
+                if (!existingApi) {
+                    const apiData = {
+                        key: apiKey,
+                        date: new Date().toISOString() 
+                    };
+                    localStorage.setItem("geminiApiKey", JSON.stringify(apiData));
+                }
+                popup.style.display = "none"; 
+                showPage(document.querySelector(".main-chat"), "Chat");
 
             } else {
                 const errorData = await response.json();
@@ -46,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("submit-popup").addEventListener("click", function ()  {
         const apiKey = document.getElementById("user-key").value.trim();
         if (apiKey) {
-            checkApiKey(apiKey);
+            checkApiKey(apiKey, false);
         } else {
             resultMessage.style.textAlign = "left";
             resultMessage.textContent = "Please enter an API Key";
