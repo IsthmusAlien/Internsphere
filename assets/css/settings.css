@@ -48,6 +48,16 @@
     text-indent: 10px;
 }
 
+#theme-select {
+    background-color: var(--theme-inner-color);
+    color: var(--theme-center-color);;
+}
+
+#api-key {
+    background-color: var(--theme-inner-color);
+    color: var(--theme-center-color);;
+}
+
 #delete-api-key {
     padding: 12px 24px;
     font-size: clamp(10px, 1.2vw, 16px);

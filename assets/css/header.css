@@ -5,12 +5,19 @@ html, body {
     height: 100%;
 }
 
+:root {
+    --theme-header-color: rgb(215, 215, 215);
+    --theme-inner-color: rgb(239, 239, 239);
+    --theme-outer-color: #282834;
+    --theme-center-color: black;
+}
+
 .header {
     display: flex;
     justify-content: center; 
     align-items: center;
     padding: 3px;
-    background-color: rgb(215, 215, 215);
+    background-color: var(--theme-header-color);
     height: 60px;
     width: 100%;
     position: relative;

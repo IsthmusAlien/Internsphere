@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     themeSelect.addEventListener("change", function () {
+        
         localStorage.setItem("theme", themeSelect.value);
         if (themeSelect.value !== previousTheme) {
             themeToggle.click();
@@ -30,11 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    const storedApiKey = localStorage.getItem("geminiApiKey");
+    const storedApiKey = JSON.parse(localStorage.getItem("geminiApiKey"));
 
     if (storedApiKey) {
-        const halfLength = Math.ceil(storedApiKey.length / 2);
-        apiKeyInput.value = storedApiKey.substring(0, halfLength) + ".......";
+        const halfLength = Math.ceil(storedApiKey.key.length / 2);
+        apiKeyInput.value = storedApiKey.key.substring(0, halfLength) + ".......";
     } else {
         apiKeyInput.value = "No API Key Found";
     }

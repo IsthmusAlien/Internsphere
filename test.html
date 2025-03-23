@@ -116,7 +116,9 @@
 
     <script>
         let data = null;
-        
+
+        document.addEventListener("DOMContentLoaded", () => {
+
             function displayData(items) {
                 dataList.innerHTML = "";
                 items.forEach(item => {
