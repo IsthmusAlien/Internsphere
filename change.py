@@ -1,26 +1,13 @@
-import pyautogui
-import time
 import pandas as pd
+import json
 
+data = pd.read_csv("final_csv.csv")
 
-df = pd.read_csv("data_new11111111111_filtered.csv")
+json_data = data.to_dict(orient="records")
 
-if "summary" in df.columns:
-    for summary in df["summary"]:
-        
-        time.sleep(5)
+json_output = json.dumps(json_data, indent=2, ensure_ascii=False)
 
-        pyautogui.click(850, 840)
+with open("data1.json", "w", encoding="utf-8") as json_file:
+    json_file.write(json_output)
 
-        pyautogui.hotkey('ctrl','a')
-
-        pyautogui.write(summary + "give a summary of this project as a readme ")
-
-        time.sleep(1)
-
-        pyautogui.press('enter')
-
-        time.sleep(25)
-
-
-
+print(json_output)

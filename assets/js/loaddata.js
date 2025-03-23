@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let dataTotalArray = [...data]; 
     const existingCategories = new Set();
-
+    
     renderData(data);
 
     async function fetchData() {
