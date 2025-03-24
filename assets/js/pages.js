@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const aboutPage = document.querySelector(".main-about");
     const settingsPage = document.querySelector(".main-settings");
     const chatPage = document.querySelector(".main-chat");
+    const interactPage = document.querySelector(".main-interact");
 
     const backAboutButton = document.querySelector(".btn-back-about");
     const settingsButton = document.querySelector(".btn-settings");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         aboutPage.style.display = "none";
         chatPage.style.display = "none";
         settingsPage.style.display = "none";
+        interactPage.style.display = "none";
 
         let currentTitle = document.title;
         
@@ -29,11 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     backAboutButton.addEventListener("click", function () {
         if (document.title === "About") {
-            showPage(previousPage === "Chat" ? chatPage : homePage, previousPage);
-            backAboutButton.textContent = "About";
+            if (previousPage === "Chat") {
+                showPage(chatPage, previousPage);
+                backAboutButton.textContent = "About";
+            } 
+            if (previousPage === "Home") {
+                showPage(homePage, previousPage);
+                backAboutButton.textContent = "About";
+            }
+            if (previousPage === "Interact") {
+                showPage(interactPage, previousPage);
+                backAboutButton.textContent = "About";
+            }
         } else if (document.title === "Settings") {
-            showPage(previousPage === "Chat" ? chatPage : homePage, previousPage);
-            backAboutButton.textContent = "About";
+            if (previousPage === "Chat") {
+                showPage(chatPage, previousPage);
+                backAboutButton.textContent = "About";
+            } 
+            if (previousPage === "Home") {
+                showPage(homePage, previousPage);
+                backAboutButton.textContent = "About";
+            }
+            if (previousPage === "Interact") {
+                showPage(interactPage, previousPage);
+                backAboutButton.textContent = "About";
+            }
         } else {
             showPage(aboutPage, "About");
             backAboutButton.textContent = "Back";

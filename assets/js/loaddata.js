@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dataList = document.getElementById("data-list");
     const categoryContainer = document.querySelector(".category-container");
     const projectSection = document.querySelector(".project-section");
+    const projectInfo = document.querySelector(".project-info");
 
     let dataTotalArray = [...data]; 
     const existingCategories = new Set();
-    
+
+ 
     renderData(data);
 
     async function fetchData() {
@@ -21,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         } catch (error) {
             console.error("Error fetching data:", error);
-            dataList.innerHTML = `<p style="color: red;">Failed to load data.</p>`;
         }
     }
 
@@ -109,15 +110,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         categories[category].forEach(project => {
             const projectLink = document.createElement("div");
-            // projectLink.href = project.reference;
             projectLink.textContent = project.title;
-            // projectLink.target = "_blank";
+            projectLink.classList.add("project-item");
+            projectLink.addEventListener("click", () => {
+                showProjectDetails(project, category);
+            });
             projectList.appendChild(projectLink);
         });
     
         projectSection.appendChild(projectList);
         projectSection.style.display = "block"; 
-    }    
-    
+
+        if (categories[category].length > 0) {
+            showProjectDetails(categories[category][0], category);
+        }
+    }
+
+    function showProjectDetails(project, category) {
+
+        projectInfo.innerHTML = "";
+
+        const title = document.createElement("p");
+        title.classList.add("project-title");
+        title.textContent = `Title: ${project.title}`;
+
+        const reference = document.createElement("p");
+        reference.classList.add("project-reference");
+        reference.textContent = `Reference: ${project.reference}`;
+
+        const summary = document.createElement("p");
+        summary.classList.add("project-summary");
+        summary.textContent = `Summary: ${project.summary}`;
+
+        const generateButton = document.createElement("button");
+        generateButton.id = "generate";
+        generateButton.textContent = "Begin";
+        
+        generateButton.addEventListener("click", () => {
+
+            showPage(document.querySelector(".main-interact"), "Interact");
+            handleQuery(project.reference, project.title, category);
+
+        });
+
+        projectInfo.appendChild(title);
+        projectInfo.appendChild(summary);
+        projectInfo.appendChild(reference);
+        projectInfo.appendChild(generateButton);
+    }
+
     fetchData();
 });

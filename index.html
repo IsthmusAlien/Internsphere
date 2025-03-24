@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logo.png">
     <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/settings.css">
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/chat.css">
+    <link rel="stylesheet" href="assets/css/interact.css">
     <script src="assets/data.js"></script>
     <script src="assets/js/loaddata.js"></script>
     <script src="assets/js/theme.js"></script>
@@ -17,7 +22,7 @@
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/checkkey.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+    <script src="assets/js/geminiquery.js"></script>
 </head>
 <body>
 
@@ -63,7 +68,6 @@
         </div>
     </div>
 
-
     <div class="main-about" style="display: none;">
         <div class="bgimg">
             <div class="caption-about">
@@ -96,18 +100,30 @@
         </div>
     </div>
 
-    <div class="main-chat">
+    <div class="main-chat" style="display: none;">
         <div class="bgimg-chat">
             <div class="caption-chat">
             <div id="data-list">
                 <div class="category-container"></div>
                 <div class="project-container">
                     <div id="project-section" class="project-section"></div>
-                    <div class="project-info">
-                        <button id="generate">Begin</button>
-                    </div>
+                    <div class="project-info"></div>
                 </div>
             </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-interact" style="display: none;">
+        <div class="bgimg-interact">
+            <div class="caption-interact">
+                <div id="response-container" class="response-container" style="display:none;">
+                    <div id="response-content"></div>
+                </div>
+                <div class="chat-box">
+                    <textarea id="user-query" placeholder="Ask your query..."></textarea>
+                    <button id="submit-query" onclick="handleExtraQuery()">Ask</button>
+                </div>
             </div>
         </div>
     </div>

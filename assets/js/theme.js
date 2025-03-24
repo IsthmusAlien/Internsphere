@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.style.setProperty('--theme-outer-color', "rgb(239, 239, 239)");
             document.documentElement.style.setProperty('--theme-inner-color', "#282834");
             document.documentElement.style.setProperty('--theme-center-color', "white");
+            document.documentElement.style.setProperty('--theme-orbital-color', "black");
             document.documentElement.style.setProperty('--theme-other-color', "#282834");
 
         } else {
@@ -68,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.style.setProperty('--theme-outer-color', "#282834");
             document.documentElement.style.setProperty('--theme-inner-color', "rgb(239, 239, 239)");
             document.documentElement.style.setProperty('--theme-center-color', "black");
+            document.documentElement.style.setProperty('--theme-orbital-color', "white");
             document.documentElement.style.setProperty('--theme-other-color', "white");
 
         }

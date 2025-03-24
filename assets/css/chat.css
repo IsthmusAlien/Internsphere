@@ -95,13 +95,13 @@
 .project-info {
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 15px;
     width: 65vw;
     min-height: 50vh; 
     overflow-y: auto;  
-    padding: 10px 0;
+    padding: 10px 10px;
     background-color: var(--theme-outer-color);  
     border-radius: 15px;
     margin-left: 1%;
@@ -180,6 +180,38 @@
 .category-container::-webkit-scrollbar-button,
 .project-list::-webkit-scrollbar-button {
   display: none;
+}
+
+.project-title {
+    font-weight: 600;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(12px, 1.4vw, 20px);
+    color: var(--theme-orbital-color);
+    text-align: left;
+    cursor: pointer;
+    width: 100%;    
+    margin-bottom: 0;
+}
+
+.project-reference {
+    font-weight: 600;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(12px, 1.4vw, 20px);
+    color: var(--theme-orbital-color);
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0;
+}
+
+.project-summary {
+    font-weight: 600;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(12px, 1.4vw, 20px);
+    color: var(--theme-orbital-color);
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
 }
 
 #generate {
