@@ -54,11 +54,16 @@
     border-radius: 15px;
 }
 
+.response-block a {
+    text-decoration: none;
+    color: lightblue;
+}
+
 .queryBlock-block {
     background-color: var(--theme-outer-color);
     color: var(--theme-orbital-color);
     border-radius: 5px;
-    padding: 2px;
+    padding: 2px 5px;
 }
 
 .copy-btn {
@@ -115,7 +120,6 @@ code {
 }
 
 .chat-box {
-    display: flex;
     flex-direction: column;
     align-items: stretch;
     position: fixed; 
@@ -124,7 +128,7 @@ code {
     z-index: 2;
     width: 90%;
     height: 120px;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 10px;
     background-color: var(--theme-inner-color);
@@ -147,7 +151,7 @@ textarea {
 #submit-query {
     margin-top: 10px;
     padding: 7px;
-    background: #007bff;
+    background: linear-gradient(135deg, #2adb50, #0eba39);
     color: white;
     font-family: "Baloo 2", sans-serif;
     font-weight: 600;
@@ -158,5 +162,49 @@ textarea {
 }
 
 #submit-query:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #22c345, #0ba231);
+}
+
+.store-box {
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed; 
+    bottom: 10px;
+    left: 2vw;
+    z-index: 2;
+    width: 90%;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: var(--theme-inner-color);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.store-info {
+    margin: 0;
+    padding: 5px;
+    color: var(--theme-center-color);
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#store-id {
+    padding: 7px;
+    background: linear-gradient(135deg, #2adb50, #0eba39);
+    color: white;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#store-id:hover {
+    background: linear-gradient(135deg, #22c345, #0ba231);
 }

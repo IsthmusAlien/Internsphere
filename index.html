@@ -120,10 +120,21 @@
                 <div id="response-container" class="response-container" style="display:none;">
                     <div id="response-content"></div>
                 </div>
-                <div class="chat-box">
+                <div class="chat-box" style="display: none;">
                     <textarea id="user-query" placeholder="Ask your query..."></textarea>
                     <button id="submit-query" onclick="handleExtraQuery()">Ask</button>
                 </div>
+                <div class="store-box" style="display: none;">
+                    <h3 class="store-info">Mark Project as Started?</h3>
+                    <button id="store-id" onclick="handleMarked()">Initiate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-submit" style="display: none;">
+        <div class="bgimg-submit">
+            <div class="caption-submit">
             </div>
         </div>
     </div>

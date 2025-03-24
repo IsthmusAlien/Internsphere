@@ -39,10 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPage(homePage, previousPage);
                 backAboutButton.textContent = "About";
             }
-            if (previousPage === "Interact") {
-                showPage(interactPage, previousPage);
-                backAboutButton.textContent = "About";
-            }
         } else if (document.title === "Settings") {
             if (previousPage === "Chat") {
                 showPage(chatPage, previousPage);
@@ -54,8 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             if (previousPage === "Interact") {
                 showPage(interactPage, previousPage);
-                backAboutButton.textContent = "About";
+                backAboutButton.textContent = "Back";
             }
+        } else if (document.title === "Interact") {
+            showPage(chatPage, previousPage);
+            backAboutButton.textContent = "About";
         } else {
             showPage(aboutPage, "About");
             backAboutButton.textContent = "Back";

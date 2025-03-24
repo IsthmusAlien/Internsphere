@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const responseContainer = document.getElementById("response-container");
     const responseContent = document.getElementById("response-content");
 
+    const storeBox = document.querySelector(".store-box");  
+    const chatBox = document.querySelector(".chat-box");  
+
     let project_title = null;
     let project_reference = null;
     let project_category = null;
@@ -14,6 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
         project_title = title;
         project_reference = reference;
         project_category = category;    
+
+        if (responseContainer) {
+            responseContainer.style.display = "none";
+        }
+        if (responseContent) {
+            responseContent.innerHTML = ""; 
+            responseContent.style.display = "none";
+        }
+        if (storeBox) {
+            storeBox.style.display = "none";
+        }
+        if (chatBox) {
+            chatBox.style.display = "none";
+        }
 
         const prompt = `Give a Step-by-Step Guide for ${title} Project with respect to ${category} along 
         with code, use this ${reference} GitHub repository as a Reference.`;
@@ -51,6 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.handleExtraQuery = handleExtraQuery;
 
     function callGeminiAPI(prompt) {
+
+        const array = JSON.parse(localStorage.getItem('markedProjects')) || [];
+
         const key = storedApiKey.key;
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
         const payload = {
@@ -66,6 +86,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
             if (data?.candidates?.length > 0) {
                 const answer = data.candidates[0]?.content?.parts[0]?.text || 'Error occurred';
+
+                chatBox.style.display = "flex";
+
+                if (!array.includes(project_title)) { 
+                    storeBox.innerHTML = "";
+                    storeBox.innerHTML = `
+                        <h3 class="store-info">Mark Project as Started?</h3>
+                        <button id="store-id" onclick="handleMarked()">Initiate</button>
+                    `;
+                    storeBox.style.display = "flex";
+                }
+
                 displayResponse(answer);
             } else {
                 displayResponse("Error fetching response.");
@@ -105,8 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         responseContainer.style.display = "block";
     }
     
-
-    function copyCode(button) {
+   function copyCode(button) {
         const codeBlock = button.nextElementSibling.innerText;
         navigator.clipboard.writeText(codeBlock).then(() => {
             button.innerText = "Copied!";
@@ -117,5 +148,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.copyCode = copyCode;
+    
+    function handleMarked () {
+
+        const storeInfo = document.querySelector(".store-info");     
+        const storeButton = document.getElementById("store-id");        
+
+        if (storeInfo) {
+            storeInfo.remove();
+        }
+
+        if (storeButton) {
+            storeButton.textContent = "Initiated";
+            storeButton.style.background = "linear-gradient(135deg, #db2a2a, #ba0e0e)";
+        }
+
+        const array = JSON.parse(localStorage.getItem('markedProjects')) || [];
+
+        if (!array.includes(project_title)) {  
+            array.push(project_title);
+            localStorage.setItem('markedProjects', JSON.stringify(array));
+        }
+    }
+    
+    window.handleMarked = handleMarked;
 
 });

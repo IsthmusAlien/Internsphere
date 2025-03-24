@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const dataList = document.getElementById("data-list");
+
     const categoryContainer = document.querySelector(".category-container");
     const projectSection = document.querySelector(".project-section");
     const projectInfo = document.querySelector(".project-info");
+    const backAboutButton = document.querySelector(".btn-back-about");
 
     let dataTotalArray = [...data]; 
     const existingCategories = new Set();
@@ -132,15 +133,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const title = document.createElement("p");
         title.classList.add("project-title");
-        title.textContent = `Title: ${project.title}`;
+        title.textContent = `${project.title}`;
+
+        const summary = document.createElement("p");
+        summary.classList.add("project-summary");
+        summary.textContent = `${project.summary}`;
 
         const reference = document.createElement("p");
         reference.classList.add("project-reference");
         reference.textContent = `Reference: ${project.reference}`;
-
-        const summary = document.createElement("p");
-        summary.classList.add("project-summary");
-        summary.textContent = `Summary: ${project.summary}`;
 
         const generateButton = document.createElement("button");
         generateButton.id = "generate";
@@ -149,6 +150,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         generateButton.addEventListener("click", () => {
 
             showPage(document.querySelector(".main-interact"), "Interact");
+            backAboutButton.textContent = "Back";
             handleQuery(project.reference, project.title, category);
 
         });
