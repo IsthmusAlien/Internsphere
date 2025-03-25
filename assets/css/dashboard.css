@@ -1,0 +1,18 @@
+.main-dashboard {
+    background-color: #0c0c13;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.caption-dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 90vh;
+    align-items: center;
+    position: relative;
+    background: transparent;
+    z-index: 1;
+    overflow-y: scroll;
+}

@@ -89,6 +89,21 @@ input:checked + .slider::before {
     background-color: white;
     color: rgb(22 20 31);
     border: 2px solid rgb(22 20 31);
+    transition: all 0.3s ease;
+}
+
+
+.btn-dashboard {
+    padding: 10px 20px; 
+    border-radius: 30px;
+    font-size: clamp(10px, 1.2vw, 15px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background-color: white;
+    color: rgb(22 20 31);
+    border: 2px solid rgb(22 20 31);
     margin-right: 10px;
     transition: all 0.3s ease;
 }

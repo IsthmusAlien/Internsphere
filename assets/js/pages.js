@@ -1,70 +1,78 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
-    const homePage = document.querySelector(".main-home");
-    const aboutPage = document.querySelector(".main-about");
-    const settingsPage = document.querySelector(".main-settings");
-    const chatPage = document.querySelector(".main-chat");
-    const interactPage = document.querySelector(".main-interact");
+    const pages = {
+        Home: document.querySelector(".main-home"),
+        About: document.querySelector(".main-about"),
+        Dashboard: document.querySelector(".main-dashboard"),
+        Settings: document.querySelector(".main-settings"),
+        Chat: document.querySelector(".main-chat"),
+        Interact: document.querySelector(".main-interact"),
+    };
 
-    const backAboutButton = document.querySelector(".btn-back-about");
+    const backButton = document.querySelector(".btn-back-about");
+    const dashboardButton = document.querySelector(".btn-dashboard");
     const settingsButton = document.querySelector(".btn-settings");
 
-    let previousPage = "Home"; 
+    let historyStack = [];  
+    const dashboardPrevious = ["Home", "Chat", "Interact"];
 
-    function showPage(pageToShow, newTitle) {
-
-        homePage.style.display = "none";
-        aboutPage.style.display = "none";
-        chatPage.style.display = "none";
-        settingsPage.style.display = "none";
-        interactPage.style.display = "none";
-
-        let currentTitle = document.title;
+    function showPage(pageName) {
         
-        document.title = newTitle;
-        pageToShow.style.display = "block";
+        Object.values(pages).forEach(page => page.style.display = "none");
+        if (pages[pageName]) {
+            pages[pageName].style.display = "block";
+            document.title = pageName;
+        }
 
-        if (currentTitle !== newTitle) {
-            previousPage = currentTitle;
+        dashboardButton.textContent = pageName === "Dashboard" ? "Home" : "Dashboard";
+
+        if (pageName === "Chat" || pageName === "Home") {
+            backButton.textContent = "About";
+        } else {
+            backButton.textContent = historyStack.length > 1 ? "Back" : "About";
         }
     }
 
-    backAboutButton.addEventListener("click", function () {
-        if (document.title === "About") {
-            if (previousPage === "Chat") {
-                showPage(chatPage, previousPage);
-                backAboutButton.textContent = "About";
-            } 
-            if (previousPage === "Home") {
-                showPage(homePage, previousPage);
-                backAboutButton.textContent = "About";
+    function navigateTo(pageName) {
+        const currentPage = historyStack.length > 0 ? historyStack[historyStack.length - 1] : null;
+
+        if (currentPage !== pageName) {
+            historyStack.push(pageName);
+            showPage(pageName);
+        } else if (pageName === "Dashboard") {
+
+            let targetPage = null;
+            let highestIndex = -1;
+
+            dashboardPrevious.forEach(page => {
+                let index = historyStack.lastIndexOf(page);
+                if (index > highestIndex) {
+                    highestIndex = index;
+                    targetPage = page;
+                }
+            });
+
+            if (targetPage) {
+                historyStack.pop(); 
+                showPage(targetPage);
             }
-        } else if (document.title === "Settings") {
-            if (previousPage === "Chat") {
-                showPage(chatPage, previousPage);
-                backAboutButton.textContent = "About";
-            } 
-            if (previousPage === "Home") {
-                showPage(homePage, previousPage);
-                backAboutButton.textContent = "About";
-            }
-            if (previousPage === "Interact") {
-                showPage(interactPage, previousPage);
-                backAboutButton.textContent = "Back";
-            }
-        } else if (document.title === "Interact") {
-            showPage(chatPage, previousPage);
-            backAboutButton.textContent = "About";
-        } else {
-            showPage(aboutPage, "About");
-            backAboutButton.textContent = "Back";
         }
-    });
+    }
 
-    settingsButton.addEventListener("click", function () {
-        showPage(settingsPage, "Settings");
-        backAboutButton.textContent = "Back";
-    });
+    function goBack() {
+        if (backButton.textContent === "About") {
+            navigateTo("About");       
+        }
+        else if (historyStack.length > 1) {
+            historyStack.pop();  
+            showPage(historyStack[historyStack.length - 1]);
+        } else {
+            navigateTo("About");     
+        }
+    }
 
-    window.showPage = showPage;
+    dashboardButton.addEventListener("click", () => navigateTo("Dashboard"));
+    settingsButton.addEventListener("click", () => navigateTo("Settings"));
+    backButton.addEventListener("click", goBack);
+
+    window.navigateTo = navigateTo;
 });

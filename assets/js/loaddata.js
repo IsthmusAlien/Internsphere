@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let dataTotalArray = [...data]; 
     const existingCategories = new Set();
 
- 
+
     renderData(data);
 
     async function fetchData() {
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         generateButton.addEventListener("click", () => {
 
-            showPage(document.querySelector(".main-interact"), "Interact");
+            navigateTo("Interact");
             backAboutButton.textContent = "Back";
             handleQuery(project.reference, project.title, category);
 
