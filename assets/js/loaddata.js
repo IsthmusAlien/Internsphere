@@ -28,6 +28,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    let link = document.createElement("a");
+    link.className = "plugin-isthmus";
+    link.href = "https://ojas-prashant-vishe.netlify.app/";
+    link.target = "_blank";
+    link.innerText = "@Isthmus Alien";
+
+    let mainAbout = document.querySelector(".main-about");
+    if (mainAbout) {
+        mainAbout.appendChild(link);
+    }
+
     function mergeUnique(arr1, arr2) {
         const merged = [...arr1, ...arr2];
         const uniqueData = [];

@@ -13,6 +13,17 @@
     z-index: 1;
 }
 
+.plugin-isthmus{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    z-index: 3;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(10px, 1.5vw, 18px);
+}
+
 .title-about {
     display: flex;
     flex-direction: row;

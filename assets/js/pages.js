@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dashboardPrevious = ["Home", "Chat", "Interact"];
 
     function showPage(pageName) {
-        console.log(historyStack);
+
         Object.values(pages).forEach(page => page.style.display = "none");
         if (pages[pageName]) {
             pages[pageName].style.display = "block";
