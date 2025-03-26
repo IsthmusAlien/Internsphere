@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/settings.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/about.css">
     <link rel="stylesheet" href="assets/css/chat.css">
     <link rel="stylesheet" href="assets/css/interact.css">
@@ -21,6 +22,7 @@
     <script src="assets/js/pages.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/settings.js"></script>
+    <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/checkkey.js"></script>
     <script src="assets/js/geminiquery.js"></script>
 </head>
@@ -47,6 +49,10 @@
     <div class="popup-overlay" id="api-popup" style="display: none;">
         <div class="popup-content">
             <h2>Welcome!</h2>
+            <p>Name:</p>
+            <input type="text" id="name-key" placeholder="Your Full Name" required>
+            <p>LinkedIn:</p>
+            <input type="text" id="linkedin-key" placeholder="Your LinkedIn" required>
             <p>Please enter your Gemini API Key:</p>
             <p id="popup-result"></p> 
             <input type="text" id="user-key" placeholder="Gemini API Key" required>
@@ -96,9 +102,13 @@
                     <option value="lg">Light Mode</option>
                     <option value="dk">Dark Mode</option>
                 </select>
+                <label for="username-key">User:</label>
+                <input type="text" id="username-key" readonly>
+                <label for="userlinkedIn-key">LinkedIn:</label>
+                <input type="text" id="userlinkedIn-key" readonly>
                 <label for="api-key">Gemini API Key:</label>
                 <input type="text" id="api-key" readonly>
-                <button id="delete-api-key">Delete API Key</button>
+                <button id="delete-api-key">Reset All</button>
             </div>
         </div>
     </div>

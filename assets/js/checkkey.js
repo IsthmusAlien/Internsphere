@@ -66,6 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("submit-popup").addEventListener("click", function ()  {
         const apiKey = document.getElementById("user-key").value.trim();
+
+        const userKey = document.getElementById("name-key").value.trim();
+        const linkedinKey = document.getElementById("linkedin-key").value.trim();
+
+        localStorage.setItem("userName", userKey);
+        localStorage.setItem("userLinkedIn", linkedinKey);
+
         if (apiKey) {
             checkApiKey(apiKey, false);
         } else {

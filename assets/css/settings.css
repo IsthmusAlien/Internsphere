@@ -14,7 +14,7 @@
 .caption-settings {
     display: flex;
     flex-direction: column;
-    margin-top: 10%;
+    margin-top: 3%;
     gap: 10px;
     width: 50%;
     height: fit-content;
@@ -49,6 +49,16 @@
 }
 
 #theme-select {
+    background-color: var(--theme-inner-color);
+    color: var(--theme-center-color);;
+}
+
+#username-key {
+    background-color: var(--theme-inner-color);
+    color: var(--theme-center-color);;
+}
+
+#userlinkedIn-key {
     background-color: var(--theme-inner-color);
     color: var(--theme-center-color);;
 }

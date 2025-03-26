@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const storedApiKey = JSON.parse(localStorage.getItem("geminiApiKey"));
+    const captionContainer = document.querySelector(".caption-interact");
     
     const queryInput = document.getElementById("user-query");        
     const responseContainer = document.getElementById("response-container");
@@ -12,6 +12,24 @@ document.addEventListener("DOMContentLoaded", function () {
     let project_title = null;
     let project_reference = null;
     let project_category = null;
+
+    function hideLoading() {
+        const loadingContainer = document.querySelector(".loading-container");
+        if (loadingContainer) {
+            loadingContainer.remove();
+        }
+    }
+
+    function showLoading() {
+        const loadingContainer = document.createElement("div");
+        loadingContainer.className = "loading-container";
+    
+        const loadingSpinner = document.createElement("div");
+        loadingSpinner.className = "loading-spinner";
+    
+        loadingContainer.appendChild(loadingSpinner);
+        captionContainer.appendChild(loadingContainer);
+    }
 
     function handleQuery(reference, title, category) {
         project_title = title;
@@ -35,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const prompt = `Give a Step-by-Step Guide for ${title} Project with respect to ${category} along 
         with code, use this ${reference} GitHub repository as a Reference.`;
 
+        showLoading();
         callGeminiAPI(prompt);
     }
 
@@ -71,6 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const array = JSON.parse(localStorage.getItem('markedProjects')) || [];
 
+        const storedApiKey = JSON.parse(localStorage.getItem("geminiApiKey"));
+
         const key = storedApiKey.key;
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
         const payload = {
@@ -86,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
             if (data?.candidates?.length > 0) {
                 const answer = data.candidates[0]?.content?.parts[0]?.text || 'Error occurred';
+
+                hideLoading();
 
                 chatBox.style.display = "flex";
 
@@ -159,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (storeButton) {
-            storeButton.textContent = "Initiated";
+            storeButton.textContent = "  Initiated  ";
             storeButton.style.background = "linear-gradient(135deg, #db2a2a, #ba0e0e)";
         }
 

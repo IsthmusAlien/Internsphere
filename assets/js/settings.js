@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const themeSelect = document.getElementById("theme-select");
     const themeToggle = document.getElementById("theme-toggle");
+    const nameKeyInput = document.getElementById("username-key");
+    const linkedInKeyInput = document.getElementById("userlinkedIn-key");
     const apiKeyInput = document.getElementById("api-key");
     const deleteApiKeyBtn = document.getElementById("delete-api-key");
 
@@ -31,17 +33,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    const storedApiKey = JSON.parse(localStorage.getItem("geminiApiKey"));
+    function loadStoredKeys() {
+        const storedApiKey = JSON.parse(localStorage.getItem("geminiApiKey"));
+        const userKey = localStorage.getItem("userName");
+        const linkedinKey = localStorage.getItem("userLinkedIn");
 
-    if (storedApiKey) {
-        const halfLength = Math.ceil(storedApiKey.key.length / 2);
-        apiKeyInput.value = storedApiKey.key.substring(0, halfLength) + ".......";
-    } else {
-        apiKeyInput.value = "No API Key Found";
+        if (nameKeyInput) nameKeyInput.value = userKey || "";
+        if (linkedInKeyInput) linkedInKeyInput.value = linkedinKey || "";
+    
+        if (storedApiKey && storedApiKey.key) {
+            const halfLength = Math.ceil(storedApiKey.key.length / 2);
+            apiKeyInput.value = storedApiKey.key.substring(0, halfLength) + ".......";
+        } else {
+            apiKeyInput.value = "No API Key Found";
+        }
     }
+    
+    loadStoredKeys();
+
+    window.loadStoredKeys = loadStoredKeys;
     
     deleteApiKeyBtn.addEventListener("click", function () {
         localStorage.removeItem("geminiApiKey");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userLinkedIn");
+        localStorage.removeItem("markedProjects");
+        nameKeyInput.value = "Username not found";
+        linkedInKeyInput.value = "User LinkedIn not found";
         apiKeyInput.value = "Gemini API Key not found";
         alert("Gemini API Key deleted");
     });

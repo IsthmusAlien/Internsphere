@@ -12,7 +12,7 @@
 }
 
 .popup-content {
-    background: rgb(239, 239, 239); 
+    background: var(--theme-popup-color);
     padding: clamp(15px, 2.2vw, 25px);
     border-radius: 15px;
     text-align: center;
@@ -57,7 +57,7 @@
     border: 2px solid #b4b4b4;
     font-size: clamp(12px, 1.5vw, 18px);
     background: transparent;
-    color: black;
+    color: var(--theme-center-color);
 }
 
 .popup-content input:focus {
@@ -97,7 +97,7 @@
 }
 
 #close-popup {
-    background: rgb(239, 239, 239);
+    background: var(--theme-popupBtn-color);
     color: #d43f3a;
     border: 2px solid #d43f3a;
 }

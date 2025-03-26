@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const bgChatImage = document.querySelector(".bgimg-chat");
     const floatingBtn = document.querySelector(".floating-btn-home");
 
-    const popupOverlay = document.querySelector(".popup-content");
     const popupInput = document.getElementById("user-key");
-    const closePopupBtn = document.getElementById("close-popup");
 
     const settingsBtn = document.getElementById("settings-icon");
     const settingsPopup = document.querySelector(".caption-settings");
@@ -29,9 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bgChatImage.style.backgroundImage = "url('assets/bg_chat_dk.jpg')";
             bgChatImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(177, 177, 177, 0.15), rgba(132, 132, 132, 0.01))");
 
-            popupOverlay.style.background = "#12121a"; 
             popupInput.style.color = "white";
-            closePopupBtn.style.backgroundColor = "rgb(18, 18, 26)";
 
             settingsBtn.src = "assets/settings-dk.png"
             settingsPopup.style.backgroundColor = "rgba(30, 30, 47, 0.7)";
@@ -43,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.style.setProperty('--theme-center-color', "white");
             document.documentElement.style.setProperty('--theme-orbital-color', "black");
             document.documentElement.style.setProperty('--theme-other-color', "#282834");
+            document.documentElement.style.setProperty('--theme-popup-color', "#12121a");
+            document.documentElement.style.setProperty('--theme-popupBtn-color', "rgb(18, 18, 26)");
+
 
         } else {
             // Light Mode
@@ -57,9 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bgChatImage.style.backgroundImage = "url('assets/bg_chat_lg.jpg')";
             bgChatImage.style.setProperty("--bg-gradient", "linear-gradient(to top, rgba(35, 33, 33, 0.8), rgba(19, 18, 18, 0.2))");
 
-            popupOverlay.style.background = "rgb(239, 239, 239)";
             popupInput.style.color = "black";
-            closePopupBtn.style.backgroundColor = "rgb(239, 239, 239)";
 
             settingsBtn.src = "assets/settings-lg.png"
             settingsPopup.style.backgroundColor = "rgba(224, 216, 216, 0.7)";
@@ -71,6 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.style.setProperty('--theme-center-color', "black");
             document.documentElement.style.setProperty('--theme-orbital-color', "white");
             document.documentElement.style.setProperty('--theme-other-color', "white");
+            document.documentElement.style.setProperty('--theme-popup-color', "rgb(239, 239, 239)");
+            document.documentElement.style.setProperty('--theme-popupBtn-color', "rgb(239, 239, 239)");
 
         }
     });

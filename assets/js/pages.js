@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         dashboardButton.textContent = pageName === "Dashboard" ? "Home" : "Dashboard";
 
+        if (pageName === "Dashboard") {
+            renderTable();
+        }
+        if (pageName === "Settings") {
+            loadStoredKeys();
+        }
+
         if (pageName === "Chat" || pageName === "Home") {
             backButton.textContent = "About";
         } else {

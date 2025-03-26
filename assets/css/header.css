@@ -12,6 +12,8 @@ html, body {
     --theme-center-color: black;
     --theme-orbital-color: white;
     --theme-other-color: #282834;
+    --theme-popup-color: rgb(239, 239, 239);
+    --theme-popupBtn-color: rgb(239, 239, 239);
 }
 
 .header {

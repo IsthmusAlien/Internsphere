@@ -16,3 +16,120 @@
     z-index: 1;
     overflow-y: scroll;
 }
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: transparent;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(13px, 1.45vw, 21px);
+}
+
+th, td {
+    border: transparent;
+    padding: 10px;
+    text-align: center;
+    color: var(--theme-center-color);
+    font-weight: 500;
+}
+
+th {
+    background-color: #5589d5;
+    color: var(--theme-center-color);
+}
+
+.project-remove {
+    padding: 5px 10px;
+    font-weight: 200;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(10px, 1.2vw, 18px) !important;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--theme-outer-color);
+    color: var(--theme-orbital-color);
+}
+
+.project-certificate {
+    padding: 5px 10px;
+    font-weight: 200;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(10px, 1.2vw, 18px) !important;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--theme-outer-color);
+    color: var(--theme-orbital-color);
+}
+
+.caption-dashboard::-webkit-scrollbar { 
+  width: 3px; 
+  height: 3px; 
+}
+
+.caption-dashboard { 
+  scrollbar-width: thin; 
+  scrollbar-color: var(--theme-inner-color) transparent; 
+}
+
+.caption-dashboard::-webkit-scrollbar-thumb { 
+  background-color: var(--theme-inner-color); 
+  border-radius: 3px; 
+}
+
+.caption-dashboard::-webkit-scrollbar-thumb:hover { 
+  background-color: var(--theme-inner-color); 
+}
+
+.caption-dashboard::-webkit-scrollbar-track { 
+  background: transparent; 
+}
+
+.caption-dashboard::-webkit-scrollbar-button {
+  display: none;
+}
+
+.dashboard-popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.dashboard-popup-box {
+  width: 30vw !important;
+}
+
+#submit-dashboard-popup {
+  background: #5589d5;
+  color: white;
+  border: 2px solid #3f7bd5;
+}
+
+#close-dashboard-popup {
+  background: var(--theme-popupBtn-color);
+  color: #d43f3a;
+  border: 2px solid #d43f3a;
+}
+
+#submit-dashboard-popup:hover {
+  background: #3f7bd5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#close-dashboard-popup:hover {
+  background: #d43f3a !important;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
