@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const dashboardButton = document.querySelector(".btn-dashboard");
     const settingsButton = document.querySelector(".btn-settings");
 
-    let historyStack = [];  
+    let historyStack = ["Home"];  
     const dashboardPrevious = ["Home", "Chat", "Interact"];
 
     function showPage(pageName) {
-        
+        console.log(historyStack);
         Object.values(pages).forEach(page => page.style.display = "none");
         if (pages[pageName]) {
             pages[pageName].style.display = "block";

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let dataTotalArray = [...data]; 
     const existingCategories = new Set();
 
+    const apiUrl = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLitvOU1gtZ_5ugffkFzJIcdlrMhpgH3ey7fC9F1gTmehvgaO7Xz6szd74tLHoIcfqzRmQKFcLSK_F2aU7delzsC-3yGgco1PC0nbV6kmona6UXvYcKYNlSXV4pyvL2_SjJJOMb_Eh8y6ENx9JVlYy10LnSsj_qTUOwmMRCApTqyDpTSzS-N4hxwdGLa6zsodwsyokK1er3HlFaInhmqtADfPgmJdB0zVHGor4ni9Nio7rs1KGc91LNznf5oXUDklGjoMmst4h7KxSI-mlIKSMd-UOQyEg&lib=MbZNem6wALQWQ40psklsGsc6dDctXikpF"
 
     renderData(data);
 
