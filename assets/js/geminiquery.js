@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
         project_reference = reference;
         project_category = category;    
 
+        localStorage.removeItem("chatHistory");
+
         if (responseContainer) {
             responseContainer.style.display = "none";
         }
@@ -53,7 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const prompt = `Give a Step-by-Step Guide for ${title} Project with respect to ${category} along 
         with code, use this ${reference} GitHub repository as a Reference.`;
 
+        saveHistory("User", prompt);
+
         showLoading();
+
         callGeminiAPI(prompt);
     }
 
@@ -78,8 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
     
         responseContainer.style.display = "block";
 
-        const prompt = `I have a query regarding this ${project_title} Project with respect to this ${project_category} Category of Development
+        const history = loadHistory();
+        const context = history ? `Based on our previous conversation:\n\n${history}\n\n` : "";
+
+        const prompt = `${context}I have a query regarding this ${project_title} Project with respect to this ${project_category} Category of Development
         and this ${project_reference} GitHub repository, which is as follows: ${query}`;
+
+        saveHistory("User", query);
 
         callGeminiAPI(prompt);
     }
@@ -133,6 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayResponse(text) {
+
+        saveHistory("AI", text);
         
         responseContent.style.display = "flex";
         responseContent.style.flexDirection = "column"; 
@@ -195,5 +207,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     window.handleMarked = handleMarked;
+
+    function saveHistory(role, message) {
+        let history = JSON.parse(localStorage.getItem("chatHistory")) || [];
+        history.push({ role, message });
+        if (history.length > 6) history = history.slice(-6); 
+        localStorage.setItem("chatHistory", JSON.stringify(history));
+    }
+
+    function loadHistory() {
+        const history = JSON.parse(localStorage.getItem("chatHistory")) || [];
+        return history.map(entry => `${entry.role}: ${entry.message}`).join("\n");
+    }
 
 });

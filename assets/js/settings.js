@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const userKey = localStorage.getItem("userName");
         const linkedinKey = localStorage.getItem("userLinkedIn");
 
-        if (nameKeyInput) nameKeyInput.value = userKey || "";
-        if (linkedInKeyInput) linkedInKeyInput.value = linkedinKey || "";
+        if (nameKeyInput) nameKeyInput.value = userKey || "No Username Found";
+        if (linkedInKeyInput) linkedInKeyInput.value = linkedinKey || "No LinkedIn Account Found";
     
         if (storedApiKey && storedApiKey.key) {
             const halfLength = Math.ceil(storedApiKey.key.length / 2);
@@ -54,10 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
     window.loadStoredKeys = loadStoredKeys;
     
     deleteApiKeyBtn.addEventListener("click", function () {
+        
         localStorage.removeItem("geminiApiKey");
         localStorage.removeItem("userName");
         localStorage.removeItem("userLinkedIn");
         localStorage.removeItem("markedProjects");
+        localStorage.removeItem("chatHistory");
+
         nameKeyInput.value = "Username not found";
         linkedInKeyInput.value = "User LinkedIn not found";
         apiKeyInput.value = "Gemini API Key not found";
