@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         About: document.querySelector(".main-about"),
         Dashboard: document.querySelector(".main-dashboard"),
         Settings: document.querySelector(".main-settings"),
-        Chat: document.querySelector(".main-chat"),
+        Menu: document.querySelector(".main-chat"),
         Interact: document.querySelector(".main-interact"),
     };
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const settingsButton = document.querySelector(".btn-settings");
 
     let historyStack = ["Home"];  
-    const dashboardPrevious = ["Home", "Chat", "Interact"];
+    const dashboardPrevious = ["Home", "Menu", "Interact"];
 
     function showPage(pageName) {
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadStoredKeys();
         }
 
-        if (pageName === "Chat" || pageName === "Home") {
+        if (pageName === "Menu" || pageName === "Home") {
             backButton.textContent = "About";
         } else {
             backButton.textContent = historyStack.length > 1 ? "Back" : "About";

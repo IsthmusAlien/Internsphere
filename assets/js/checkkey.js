@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (monthDifference < 1) {
             popup.style.display = "none"; 
-            navigateTo("Chat");
+            navigateTo("Menu");
         } else {
             checkApiKey(existingApiKey, true);
         }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem("geminiApiKey", JSON.stringify(apiData));
                 }
                 popup.style.display = "none"; 
-                navigateTo("Chat");
+                navigateTo("Menu");
 
             } else {
                 const errorData = await response.json();

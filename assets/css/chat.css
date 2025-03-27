@@ -56,7 +56,7 @@
 }
 
 .category {
-    padding: 12px 18px;
+    padding: clamp(5px, 1vw, 12px) clamp(5px, 1vw, 15px);
     font-size: clamp(11px, 1.3vw, 16px);
     cursor: pointer;
     background-color: var(--theme-other-color);  
@@ -129,7 +129,7 @@
 
 .project-list div {
     width: 85%;
-    padding: 15px;
+    padding: clamp(5px, 1vw, 15px);
     cursor: pointer;
     text-align: left;
     background-color: var(--theme-other-color);
@@ -235,4 +235,22 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     background: linear-gradient(135deg, #22c345, #0ba231);
+}
+
+.project-submission {
+    background-color: var(--theme-outer-color);
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.project-submission a {
+    color: var(--theme-orbital-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(12px, 1.5vw, 18px);
 }
