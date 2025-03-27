@@ -1,7 +1,7 @@
 const data = 
 [
   {
-    "title": "crypto Currency Price Info",
+    "title": "Certificate Creation",
     "category": "HTML & CSS",
     "reference": "https://github.com/surabhiojha12/Certificate_creation-",
     "summary": "This project generates event certificates using HTML, CSS, and jsPDF. It includes a details entry page, a certificate display page, and a PDF download option. The same logic can be applied to ticket booking systems."
