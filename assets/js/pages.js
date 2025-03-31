@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (targetPage) {
-                historyStack.pop(); 
+                historyStack.splice(highestIndex + 1);
                 showPage(targetPage);
             }
         }
