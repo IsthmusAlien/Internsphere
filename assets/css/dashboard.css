@@ -105,10 +105,6 @@ th {
   z-index: 3;
 }
 
-.dashboard-popup-box {
-  width: 30vw !important;
-}
-
 #submit-dashboard-popup {
   background: #5589d5;
   color: white;

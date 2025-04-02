@@ -73,25 +73,60 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         document.body.appendChild(popup);
 
-        document.getElementById("submit-dashboard-popup").addEventListener("click", () => {
-            const userKey = localStorage.getItem("userName");
-            const linkedinKey = localStorage.getItem("userLinkedIn");
-            
-            const githubRepo = document.getElementById("repo-key").value.trim();
+        window.addEventListener("click", (e) => {
+            const popupContainer = document.querySelector(".dashboard-popup-container");
+            if (e.target === popupContainer) {
+                closePopup();
+            }
+        });
 
+        document.getElementById("submit-dashboard-popup").addEventListener("click", async function () {
+            this.disabled = true;
+            this.innerText = "Processing..."; 
+        
+            const githubRepo = document.getElementById("repo-key").value.trim();
+        
             if (!githubRepo) {
                 alert("Please fill out Github Repository!");
+                this.disabled = false;
+                this.innerText = "Submit";
                 return;
             }
-
-            const userName = encodeURIComponent(userKey);
-            const projectName = encodeURIComponent(name);
-            const repoLink = encodeURIComponent(githubRepo);
-            const linkedIn = encodeURIComponent(linkedinKey);
-
-            const url = `certificate.html?user=${userName}&project=${projectName}&repo=${repoLink}&linkedin=${linkedIn}`;
-            window.open(url, "_blank");
-            closePopup();
+        
+            try {
+                const score = await checkRepoKey(githubRepo);
+        
+                if (score === -1) {
+                    popup.innerHTML = `
+                    <div class="popup-content">
+                        <p><strong>Error:</strong> Unable to verify the repository.</p>
+                        <p>Please check the repository link and try again.</p>
+                    </div>`;
+                } else if (score < 55) {
+                    popup.innerHTML = `
+                    <div class="popup-content">
+                        <p><strong>Repo Evaluation:</strong> Needs significant improvement.</p>
+                    </div>`;
+                } else {
+                    const userKey = localStorage.getItem("userName");
+                    const linkedinKey = localStorage.getItem("userLinkedIn");
+        
+                    const userName = encodeURIComponent(userKey);
+                    const projectName = encodeURIComponent(name);
+                    const repoLink = encodeURIComponent(githubRepo);
+                    const linkedIn = encodeURIComponent(linkedinKey);
+        
+                    const url = `certificate.html?user=${userName}&project=${projectName}&repo=${repoLink}&linkedin=${linkedIn}`;
+                    window.open(url, "_blank");
+                    closePopup();
+                }
+            } catch (error) {
+                console.error("Error checking repo:", error);
+                popup.innerHTML = `
+                <div class="popup-content">
+                    <p>An Error Occurred, please try again</p>
+                </div>`;
+            }
         });
 
         document.getElementById("close-dashboard-popup").addEventListener("click", closePopup);
